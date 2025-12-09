@@ -1,0 +1,33 @@
+package nukleo.birthdaybot.service;
+
+
+import lombok.AllArgsConstructor;
+import nukleo.birthdaybot.model.ChatMemberUpdate;
+import nukleo.birthdaybot.util.BotConfig;
+import org.springframework.stereotype.Service;
+
+@Service
+@AllArgsConstructor
+public class LogService {
+
+
+    private final TelegramService telegramService;
+    private final BotConfig botConfig;
+
+    private void sendLog(String text){
+        Long logId=botConfig.getLogId();
+        if(logId==null) return;
+        telegramService.sendMessage(logId, text);
+    }
+
+    public void pingOnline(){
+        this.sendLog("online");
+    }
+
+    public void logAddChat(ChatMemberUpdate member){
+        this.sendLog("✅ New group added: "+member.getChat().getTitle()+"\nAdded by: <a href='tg://user?id="+member.getFrom().getId()+"'>"+member.getFrom().getFirst_name()+"</a>");
+    }
+
+
+    //TODO: implement log managament
+}
