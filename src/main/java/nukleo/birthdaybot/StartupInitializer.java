@@ -18,6 +18,11 @@ public class StartupInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        translationManager.createLanguageTable();
+        translationManager.loadAllGroupsLanguages();
+        translationManager.loadTranslations();
+
+
         logService.pingOnline();
 
         System.out.println("✅ Startup complete!");
