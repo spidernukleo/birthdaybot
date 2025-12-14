@@ -25,8 +25,9 @@ public class StartupInitializer implements CommandLineRunner {
         translationManager.loadTranslations();
 
         coreManager.createBdaysTable();
+        coreManager.loadAllGroupBdays();
 
-        logService.pingOnline();
+        //logService.pingOnline();
 
         System.out.println("✅ Startup complete!");
 

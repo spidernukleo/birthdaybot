@@ -33,7 +33,7 @@ public class TelegramController {
 
     @PostMapping("/bot2-webhook")
     public void onTelegramUpdate(@RequestBody Map<String, Object> update) {
-        printUpdate(update);
+        //printUpdate(update);
 
         if(update.containsKey("message")){
             Message message = objectMapper.convertValue(update.get("message"), Message.class);

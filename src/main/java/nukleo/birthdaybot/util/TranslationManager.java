@@ -60,7 +60,7 @@ public class TranslationManager {
     public void addChatLanguage(Long chatId){
         languageRepository.addChat(chatId);
         if(!groupLanguages.containsKey(chatId)){
-            groupLanguages.put(chatId, "en");
+            groupLanguages.put(chatId, "it");
         }
     }
 

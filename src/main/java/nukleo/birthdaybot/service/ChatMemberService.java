@@ -25,8 +25,15 @@ public class ChatMemberService {
             return;
         }
 
-        translationManager.addChatLanguage(chatId);
-        telegramService.sendMessage(chatId, translationManager.getMessage(chatId, "welcome"));
-        logService.logAddChat(member);
+
+        //temp
+        if(chatId==-1001949370621L || chatId==-1003335280114L) {
+            translationManager.addChatLanguage(chatId);
+            telegramService.sendMessage(chatId, translationManager.getMessage(chatId, "welcome"));
+            logService.logAddChat(member);
+        }
+        else{
+            telegramService.leaveChat(chatId);
+        }
     }
 }

@@ -2,10 +2,12 @@
   "welcome": "Salve, sono il manager dei compleanni\nVisualizza i compleanni con /bdays e impostane di nuovi ..., quando sarà il suo comply, verra taggato bla bla da fare\n\nPer qualsiasi problema @nukleolimitatibot",
   "done": "Fatto!",
   "changelang": "Scegli la nuova lingua:",
-  "notreply": "Questo comando va usato in risposta ad un altro messaggio.",
+  "notreply": "Questo comando va usato in risposta ad un utente.",
   "infocmd": "Premi sulla x per eliminare il compleanno.",
   "deletecmdinfo": "Sei sicuro di voler eliminare il compleanno: ",
   "confirm": "Conferma ✅",
   "dismiss": "Annulla ✖\uFE0F",
-  "bottomText": "\n\n<i>Per qualsiasi problema @nukleolimitatibot</i>"
+  "bottomText": "\n\n<i>Per qualsiasi problema @nukleolimitatibot</i>",
+  "nobdays": "Nessun compleanno.",
+  "notImplemented": "Funzionalità non ancora implementata."
 }
