@@ -17,7 +17,7 @@ public class LanguageRepository {
         try{
             String sql = "INSERT INTO languages (chatId, activeLangCode) VALUES (?, ?) " +
                     "ON CONFLICT (chatId) DO NOTHING";
-            jdbc.update(sql, chatId, "en");
+            jdbc.update(sql, chatId, "it");
         }
         catch(Exception e){
             e.printStackTrace();

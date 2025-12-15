@@ -45,25 +45,26 @@ public class MessageService {
                     String[] parts = text.split(" ", 2);
                     if (parts.length > 1) {
                         if (!coreManager.addGroupBday(chatId, repliedMessage.getFrom().getId(), repliedMessage.getFrom().getFirst_name(), parts[1])) {
-                            telegramService.sendMessage(chatId, translationManager.getMessage(chatId, "data non messa bene"));
+                            telegramService.sendMessage(chatId, translationManager.getMessage(chatId, "wrongDateFormat"));
                         } else {
-                            telegramService.sendMessage(chatId, translationManager.getMessage(chatId, "fatto top"));
+                            telegramService.sendMessage(chatId, translationManager.getMessage(chatId, "birthdayAdded"));
                         }
                     } else {
-                        telegramService.sendMessage(chatId, translationManager.getMessage(chatId, "scrivi la data dopo il comando"));
+                        telegramService.sendMessage(chatId, translationManager.getMessage(chatId, "noDateArg"));
                     }
                 }
 
-            } else if (text.startsWith("/bdays")) {
-                List<Bday> bdays = coreManager.getGroupBdays(chatId);
-                if (!bdays.isEmpty()) {
-                    String msg = "";
-                    for (Bday bday : bdays) {
-                        msg += bday.getFirstName() + " " + bday.getDate() + "\n";
-                    }
-                    telegramService.sendMessage(chatId, msg);
-                } else telegramService.sendMessage(chatId, translationManager.getMessage(chatId, "nobdays"));
             }
+//            else if (text.startsWith("/bdays")) {
+//                List<Bday> bdays = coreManager.getGroupBdays(chatId);
+//                if (!bdays.isEmpty()) {
+//                    String msg = "";
+//                    for (Bday bday : bdays) {
+//                        msg += bday.getFirstName() + " " + bday.getDate() + "\n";
+//                    }
+//                    telegramService.sendMessage(chatId, msg);
+//                } else telegramService.sendMessage(chatId, translationManager.getMessage(chatId, "nobdays"));
+//            }
         }
         else return;
     }

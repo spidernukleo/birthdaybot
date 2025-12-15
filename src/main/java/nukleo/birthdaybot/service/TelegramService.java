@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -20,6 +22,25 @@ public class TelegramService {
 
     private final RestTemplate restTemplate = new RestTemplate();
 
+
+    public void sendAnimation(Long chatId, String fileId, String caption) {
+        if (fileId == null || fileId.isEmpty()) {
+            sendMessage(chatId, caption);
+            return;
+        }
+
+        Map<String, Object> req = new HashMap<>();
+        req.put("chat_id", chatId);
+        req.put("animation", fileId);
+        req.put("parse_mode", "HTML");
+        if (caption != null) req.put("caption", caption);
+
+        try {
+            restTemplate.postForObject(botConfig.getTgUrl() + "/sendAnimation", req, String.class);
+        } catch (Exception e) {
+            throw new RuntimeException("Error sending animation to " + chatId + ": " + e.getMessage(), e);
+        }
+    }
 
     public void sendPhoto(Long chatid, String caption, String fileId){
         if(fileId==null || fileId.isEmpty()) sendMessage(chatid, caption);
@@ -55,6 +76,7 @@ public class TelegramService {
             throw new RuntimeException("Error sending message "+chatId +": "+e.getMessage());
         }
     }
+
 
     public void leaveChat(Long chatId){
         Map<String, Object> req = Map.of("chat_id", chatId);

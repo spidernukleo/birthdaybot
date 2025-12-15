@@ -9,5 +9,8 @@
   "dismiss": "Annulla ✖\uFE0F",
   "bottomText": "\n\n<i>Per qualsiasi problema @nukleolimitatibot</i>",
   "nobdays": "Nessun compleanno.",
-  "notImplemented": "Funzionalità non ancora implementata."
+  "notImplemented": "Funzionalità non ancora implementata.",
+  "wrongDateFormat": "La data va scritta nel formato anno-mese-giorno.\nMese e giorno devono avere la doppia cifra\nEsempio 3 settembre: YYYY-09-03",
+  "birthdayAdded": "Compleanno aggiunto correttamente.",
+  "noDateArg": "Inserisci la data: /setbday YYYY-MM-DD"
 }

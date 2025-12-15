@@ -2,6 +2,7 @@ package nukleo.birthdaybot.util;
 
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import nukleo.birthdaybot.model.Bday;
 import nukleo.birthdaybot.model.GroupBday;
 import nukleo.birthdaybot.repository.CoreRepository;
@@ -22,6 +23,8 @@ public class CoreManager {
     private CoreRepository coreRepository;
     private TelegramService telegramService;
 
+
+    @Getter
     private final Map<Long, List<Bday>> groupBdays = new HashMap<>();
 
 
@@ -74,6 +77,36 @@ public class CoreManager {
 
     public void removeGroupBday(Long chatId, Bday bday){
 
+    }
+
+
+    public void sendBirthdayMessage(Long chatId, List<Bday> bdays) {
+        if (bdays == null || bdays.isEmpty()) return;
+
+        StringBuilder caption = new StringBuilder("🎉 TANTI AUGURI AMOROSI A ");
+
+        for (int i = 0; i < bdays.size(); i++) {
+            Bday b = bdays.get(i);
+            // clickable link to Telegram profile
+            caption.append("<a href=\"tg://user?id=")
+                    .append(b.getUserId())
+                    .append("\">")
+                    .append(b.getFirstName())
+                    .append("</a>");
+
+            // append a comma after every name, even the last one
+            caption.append(", ");
+        }
+
+        // remove the last comma and space
+        if (caption.length() >= 2) caption.setLength(caption.length() - 2);
+
+        // send the animation with caption
+        telegramService.sendAnimation(
+                chatId,
+                "CgACAgQAAyEFAATGzFXyAANjaT928_ODKJd2YY6vI2qwKAYVgXAAAsYGAAI_bKxRhDaVNS8RD-82BA",
+                caption.toString()
+        );
     }
 
 }
